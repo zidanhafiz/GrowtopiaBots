@@ -40,6 +40,11 @@ function CreateAccount() {
         placeholder='growID'
         value={growId}
         onChange={(e) => setGrowId(e.target.value)}
+        pattern='^\S+$'
+        title='space is not required!'
+        required
+        minLength={5}
+        maxLength={20}
       />
       <input
         className='bg-gray-900 py-2 px-3 focus:outline-none'
@@ -47,6 +52,11 @@ function CreateAccount() {
         placeholder='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        pattern='^\S+$'
+        title='space is not required!'
+        required
+        minLength={8}
+        maxLength={20}
       />
       <button
         type='submit'

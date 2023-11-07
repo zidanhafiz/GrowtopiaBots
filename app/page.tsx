@@ -36,23 +36,24 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {data.map((d: GrowAccount, i: number) => (
-              <tr
-                key={d.id}
-                className='border border-slate-700 text-center h-12'
-              >
-                <td className='border border-slate-700'>{i + 1}</td>
-                <td className='border border-slate-700'>{d.growId}</td>
-                <td className='border border-slate-700'>{d.password}</td>
-                <td className='border border-slate-700'>{d.status}</td>
-                <td className='border border-slate-700'>{d.world}</td>
-                <td className='border border-slate-700'>{d.ping}</td>
-                <td className='border border-slate-700'>
-                  <WarpBtn id={d.id} />
-                  <DeleteBtn id={d.id} />
-                </td>
-              </tr>
-            ))}
+            {data &&
+              data.map((d: GrowAccount, i: number) => (
+                <tr
+                  key={d.id}
+                  className='border border-slate-700 text-center h-12'
+                >
+                  <td className='border border-slate-700'>{i + 1}</td>
+                  <td className='border border-slate-700'>{d.growId}</td>
+                  <td className='border border-slate-700'>{d.password}</td>
+                  <td className='border border-slate-700'>{d.status}</td>
+                  <td className='border border-slate-700'>{d.world}</td>
+                  <td className='border border-slate-700'>{d.ping}</td>
+                  <td className='border border-slate-700'>
+                    <WarpBtn id={d.id} />
+                    <DeleteBtn id={d.id} />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
