@@ -2,7 +2,9 @@
 
 import CreateAccount from '@/components/create-account';
 import DeleteBtn from '@/components/delete-btn';
+import PasswordCol from '@/components/password-col';
 import WarpBtn from '@/components/warp-btn';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -49,7 +51,9 @@ export default function Home() {
                 >
                   <td className='border border-slate-700'>{i + 1}</td>
                   <td className='border border-slate-700'>{d.growid}</td>
-                  <td className='border border-slate-700'>{d.password}</td>
+                  <td className='border border-slate-700'>
+                    <PasswordCol>{d.password}</PasswordCol>
+                  </td>
                   <td className='border border-slate-700'>{d.status}</td>
                   <td className='border border-slate-700'>{d.world}</td>
                   <td className='border border-slate-700'>{d.ping}</td>
