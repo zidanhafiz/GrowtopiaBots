@@ -1,4 +1,5 @@
 'use client';
+
 import CreateAccount from '@/components/create-account';
 import DeleteBtn from '@/components/delete-btn';
 import WarpBtn from '@/components/warp-btn';
@@ -6,12 +7,15 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [data, setData] = useState<GrowAccount[]>([]);
+  // const [count, setCount] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   useEffect(() => {
+    // console.log(count + 1);
     fetch('/api/bots')
       .then((res) => res.json())
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
-  }, [data]);
+  }, [isLoading]);
 
   return (
     <main className='mx-5 lg:mx-[10%]'>
@@ -20,7 +24,10 @@ export default function Home() {
       </h1>
       <hr />
       <div>
-        <CreateAccount />
+        <CreateAccount
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
       </div>
       <div className='w-full'>
         <table className='table-auto w-full'>
@@ -50,7 +57,11 @@ export default function Home() {
                   <td className='border border-slate-700'>{d.ping}</td>
                   <td className='border border-slate-700'>
                     <WarpBtn id={d.id} />
-                    <DeleteBtn id={d.id} />
+                    <DeleteBtn
+                      id={d.id}
+                      isLoading={isLoading}
+                      setIsLoading={setIsLoading}
+                    />
                   </td>
                 </tr>
               ))}

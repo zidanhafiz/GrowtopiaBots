@@ -9,14 +9,14 @@ export async function GET() {
       const item = { id: doc.id, ...doc.data() };
       datas.push(item);
     });
-    return Response.json({ status: 200, data: datas });
+    return Response.json({ status: 200, data: datas }).status;
   } catch (e) {
-    return Response.json({ status: 400, message: 'Error get data' });
+    return Response.json({ status: 400, message: 'Error get data' }).status;
   }
 }
 
 export async function POST(request: Request) {
-  const { growId, password } = await request.json();
+  const { growId, password }: { growId: string; password: string } = await request.json();
   try {
     await addDoc(collection(db, 'bots'), {
       growId,
@@ -26,8 +26,8 @@ export async function POST(request: Request) {
       world: '',
       created_at: serverTimestamp(),
     });
-    return Response.json({ status: 201, message: 'success created new account' });
+    return Response.json({ status: 201, message: 'success created new account' }).status;
   } catch (e) {
-    return Response.json({ status: 400, error: 'error' });
+    return Response.json({ status: 400, error: 'error' }).status;
   }
 }

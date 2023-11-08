@@ -1,11 +1,15 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 
-function CreateAccount() {
+type Props = {
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+function CreateAccount({ isLoading, setIsLoading }: Props) {
   const [growId, setGrowId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const formSubmit = async (e: FormEvent) => {
     e.preventDefault();
