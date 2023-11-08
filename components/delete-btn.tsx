@@ -1,10 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-function DeleteBtn({ id }: { id: string }) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+type Props = {
+  id: string;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+};
 
+function DeleteBtn({ id, isLoading, setIsLoading }: Props) {
   const deleteAccount = async (id: string) => {
     if (window.confirm('Are you sure wanna delete this account?')) {
       setIsLoading(true);
