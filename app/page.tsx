@@ -7,10 +7,8 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [data, setData] = useState<GrowAccount[]>([]);
-  // const [count, setCount] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   useEffect(() => {
-    // console.log(count + 1);
     fetch('/api/bots')
       .then((res) => res.json())
       .then((res) => setData(res.data))
@@ -50,7 +48,7 @@ export default function Home() {
                   className='border border-slate-700 text-center h-12'
                 >
                   <td className='border border-slate-700'>{i + 1}</td>
-                  <td className='border border-slate-700'>{d.growId}</td>
+                  <td className='border border-slate-700'>{d.growid}</td>
                   <td className='border border-slate-700'>{d.password}</td>
                   <td className='border border-slate-700'>{d.status}</td>
                   <td className='border border-slate-700'>{d.world}</td>

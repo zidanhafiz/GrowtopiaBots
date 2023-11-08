@@ -1,22 +1,22 @@
-import { db } from '@/lib/firebase';
-import { doc, deleteDoc, getDoc } from 'firebase/firestore';
+import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const id = params.id;
   try {
-    const docSnap = await getDoc(doc(db, 'bots', id));
-    return Response.json({ status: 200, data: docSnap.data() }).status;
-  } catch (e) {
-    return Response.json({ status: 400, message: 'Error get data' }).status;
+    const result = await sql`SELECT * FROM bots WHERE id = ${id}`;
+    return NextResponse.json({ data: result.rows }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 400 });
   }
 }
 
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   const id = params.id;
   try {
-    await deleteDoc(doc(db, 'bots', id));
-    return Response.json({ status: 200, message: 'delete success' }).status;
-  } catch (e) {
-    return Response.json({ status: 400, error: 'error delete' }).status;
+    const result = await sql`DELETE FROM bots WHERE id = ${id}`;
+    return NextResponse.json({ result }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 400 });
   }
 }

@@ -1,6 +1,6 @@
 type GrowAccount = {
   id: string;
-  growId?: string;
+  growid?: string;
   password?: string;
   status?: string;
   world?: string;
@@ -8,8 +8,5 @@ type GrowAccount = {
 };
 
 type Data = GrowAccount & {
-  created_at?: {
-    seconds: number;
-    nanoseconds: number;
-  };
+  created_at?: string;
 };
